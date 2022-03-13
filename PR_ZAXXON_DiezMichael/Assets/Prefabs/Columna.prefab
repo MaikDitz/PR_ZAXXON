@@ -287,9 +287,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
-  m_Height: 2
+  m_Height: 2.2480159
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.000000059604645, y: 0.038914353, z: -0.00000011920929}
 --- !u!1 &6427186163742284235
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5224898078327873544}
   - component: {fileID: 7160817180473447600}
+  - component: {fileID: 7149268102114402433}
   m_Layer: 0
   m_Name: Columna
   m_TagString: Untagged
@@ -315,7 +316,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6427186163742284235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.43, z: 0}
   m_LocalScale: {x: 1, y: 3.4139, z: 1}
   m_Children:
   - {fileID: 2531656192983798120}
@@ -334,3 +335,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d531fbc2d7ebd96449882ebe5de2f986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &7149268102114402433
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6427186163742284235}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.6609728
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.3304853, z: 0}
