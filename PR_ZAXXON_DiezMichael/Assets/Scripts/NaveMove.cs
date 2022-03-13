@@ -8,6 +8,10 @@ public class NaveMove : MonoBehaviour
     [SerializeField] float desplSpeed;
     [SerializeField] float rotationSpeed;
     InitGame initGame;
+    [SerializeField] GameObject bala;
+    [SerializeField] Transform cannon;
+    [SerializeField] AudioClip disparo;
+    AudioSource audiosource;
 
     //Variables para restricción de movimiento
     float limiteH = 10f; //Solo creo una porque por la izquierda es la misma pero en negativo
@@ -21,14 +25,19 @@ public class NaveMove : MonoBehaviour
         desplSpeed = 20f;
         rotationSpeed = 100f; //La de rotación es alta porque la rotación es muy lenta
         initGame = GameObject.Find("InitGame").GetComponent<InitGame>();
+        audiosource = GetComponent<AudioSource>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //IMPORTANTE: el método Update tiene que estar vacío
-        MoverNarve();
+        if (initGame.alive)
+        {
+            MoverNarve();
+        }
+
+        Disparar();
 
     }
 
@@ -36,16 +45,15 @@ public class NaveMove : MonoBehaviour
     //Método que mueve la nave
     void MoverNarve()
     {
-        //Obtengo los valores de los ejes
+        
         float desplX = Input.GetAxis("Horizontal");
         float desplY = Input.GetAxis("Vertical");
         float desplR = Input.GetAxis("Rotation"); //Este lo he creado en Input Manager
 
-        //Obtengo la posición de la nave
         float posX = transform.position.x;
         float posY = transform.position.y;
 
-        //Muevo la nave solo si se dan las condiciones ideales
+
         if ((posX < limiteH || desplX < 0f) && (posX > -limiteH || desplX > 0f))
         {
             transform.Translate(Vector3.right * Time.deltaTime * desplSpeed * desplX, Space.World);
@@ -59,17 +67,7 @@ public class NaveMove : MonoBehaviour
         //Rotación con joystick derecho
         transform.Rotate(0f, 0f, desplR * Time.deltaTime * -rotationSpeed);
 
-        /*
-        //Esta forma alternativa de retringir movimiento no siempre funciona
-        if(posX > limiteH && desplX > 0f)
-        {
-            transform.position = new Vector3(posX, transform.position.y, transform.position.z);
-        }
-        else if(posX < -limiteH && desplX < 0f)
-        {
-            transform.position = new Vector3(posX, transform.position.y, transform.position.z);
-        }
-        */
+ 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -77,8 +75,16 @@ public class NaveMove : MonoBehaviour
         if(other.gameObject.tag == "Obstaculo")
         {
 
-            print("Me he chocado");
-            initGame.spaceshipSpeed = 0;
+            initGame.SendMessage("Me he chocado", other.gameObject);
+        }
+    }
+    void Disparar()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            print("Disparando");
+            Instantiate(bala, cannon);
+            audiosource.PlayOneShot(disparo, 2f);
         }
     }
 }
