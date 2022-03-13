@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ColumnaMove : MonoBehaviour
 {
-
+    InitGame initGame;
     float speed;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        speed = 20f;
-
+        initGame = GameObject.Find("InitGame").GetComponent<InitGame>();
+        speed = initGame.spaceshipSpeed;
     }
 
     // Update is called once per frame

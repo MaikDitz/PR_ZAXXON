@@ -7,6 +7,7 @@ public class NaveMove : MonoBehaviour
     //Variables para el movimiento
     [SerializeField] float desplSpeed;
     [SerializeField] float rotationSpeed;
+    InitGame initGame;
 
     //Variables para restricción de movimiento
     float limiteH = 10f; //Solo creo una porque por la izquierda es la misma pero en negativo
@@ -19,6 +20,7 @@ public class NaveMove : MonoBehaviour
         //Asigno el valor a las variables de movimiento
         desplSpeed = 20f;
         rotationSpeed = 100f; //La de rotación es alta porque la rotación es muy lenta
+        initGame = GameObject.Find("InitGame").GetComponent<InitGame>();
 
     }
 
@@ -76,7 +78,7 @@ public class NaveMove : MonoBehaviour
         {
 
             print("Me he chocado");
-
+            initGame.spaceshipSpeed = 0;
         }
     }
 }
