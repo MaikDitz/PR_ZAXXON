@@ -17,8 +17,8 @@ public class Instanciador : MonoBehaviour
     //Posición donde se instanciarán los obstáculos
     [SerializeField] Transform instantiatePos;
     //Límites de posición para los obstáculos
-    float limiteL = -18f;
-    float limiteR = 18f;
+    float limiteL = -10f;
+    float limiteR = 10f;
 
     //Acceder al script con las variables generales
     InitGame initGame;
@@ -62,7 +62,7 @@ public class Instanciador : MonoBehaviour
 
             float randomX;
             //Posición Random en X
-            if (obstaculos[numAl].tag != "pared")
+            if (obstaculos[numAl].tag != "Obstaculo")
             {
                 randomX = Random.Range(limiteL, limiteR);
             }
